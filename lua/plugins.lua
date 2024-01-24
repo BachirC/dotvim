@@ -60,13 +60,6 @@ local packages = {
                 end,
         },
         {
-                "jose-elias-alvarez/null-ls.nvim",
-                config = function()
-                        require("cstm.null-ls")
-                end,
-                requires = { "nvim-lua/plenary.nvim" },
-        },
-        {
                 'lewis6991/gitsigns.nvim',
                 config = function()
                         require('cstm.config.gitsigns')
