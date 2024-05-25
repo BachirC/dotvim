@@ -53,11 +53,11 @@ local toggle = function()
 end
 
 local next = function()
-	vim.diagnostic.goto_next({ wrap = true })
+	vim.diagnostic.goto_next({ wrap = true, severity = vim.diagnostic.severity.ERROR })
 end
 
 local prev = function()
-	vim.diagnostic.goto_prev({ wrap = true })
+	vim.diagnostic.goto_prev({ wrap = true, severity = vim.diagnostic.severity.ERROR })
 end
 
 

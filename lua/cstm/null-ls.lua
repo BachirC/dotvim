@@ -6,7 +6,11 @@ local sources = {
 	null_ls.builtins.diagnostics.actionlint, -- Github actions
 	null_ls.builtins.diagnostics.jsonlint,
 
-	null_ls.builtins.formatting.prettierd,
+	null_ls.builtins.formatting.prettierd.with({
+		condition = function(utils)
+			return utils.has_file({ ".prettierrc.js" })
+		end,
+	}),
 	null_ls.builtins.formatting.jq,
 	null_ls.builtins.formatting.fixjson,
 

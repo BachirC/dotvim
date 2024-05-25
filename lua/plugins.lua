@@ -140,6 +140,29 @@ local packages = {
                                 })
                         end, 100)
                 end,
+        },
+        { "jellydn/CopilotChat.nvim",
+                event = "VimEnter",
+--                opts = {
+--                        mode = "split", -- newbuffer or split  , default: newbuffer
+--                },
+                config = function()
+                        vim.defer_fn(function()
+                                vim.cmd("UpdateRemotePlugins")
+                                vim.notify("CopilotChat - Updated remote plugins. Please restart Neovim.")
+                                require('CopilotChat').setup({
+                                        mode = "split", -- newbuffer or split  , default: newbuffer
+                                        keys = {
+                                                { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
+                                                { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
+                                        }
+                                })
+                        end, 3000)
+                end,
+                --keys = {
+                --        { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
+                --        { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
+                --}
         }
 }
 
