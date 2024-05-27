@@ -1,11 +1,7 @@
-vim.cmd([[packadd packer.nvim]])
-
-local packages = {
-        { "wbthomason/packer.nvim", opt = true },
-
+return {
         {
                 "nvim-treesitter/nvim-treesitter",
-                run = ":TSUpdate",
+                build = ":TSUpdate",
                 config = function()
                         require("cstm.config.treesitter")
                 end,
@@ -34,11 +30,11 @@ local packages = {
         { "jose-elias-alvarez/typescript.nvim" },
         {
                 "nvim-telescope/telescope.nvim",
-                tag = "0.1.5",
-                requires = {
+                version = "0.1.5",
+                dependencies = {
                         { "nvim-lua/plenary.nvim" },
                         { "nvim-telescope/telescope-live-grep-args.nvim" },
-                        { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+                        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
                 },
                 config = function()
                         require("cstm.config.telescope")
@@ -47,7 +43,7 @@ local packages = {
 
         {
                 "hrsh7th/nvim-cmp",
-                requires = {
+                dependencies = {
                         "hrsh7th/cmp-nvim-lsp",
                         { "hrsh7th/cmp-cmdline" },
                         { "hrsh7th/cmp-path" },
@@ -64,7 +60,7 @@ local packages = {
                 config = function()
                         require('cstm.config.gitsigns')
                 end,
-                requires = { "nvim-lua/plenary.nvim" },
+                dependencies = { "nvim-lua/plenary.nvim" },
         },
         { 'tpope/vim-fugitive' }, -- git wrapper
         { 'tpope/vim-eunuch' }, -- unix helpers
@@ -140,30 +136,5 @@ local packages = {
                                 })
                         end, 100)
                 end,
-        },
-        { "jellydn/CopilotChat.nvim",
-                event = "VimEnter",
---                opts = {
---                        mode = "split", -- newbuffer or split  , default: newbuffer
---                },
-                config = function()
-                        vim.defer_fn(function()
-                                vim.cmd("UpdateRemotePlugins")
-                                vim.notify("CopilotChat - Updated remote plugins. Please restart Neovim.")
-                                require('CopilotChat').setup({
-                                        mode = "split", -- newbuffer or split  , default: newbuffer
-                                        keys = {
-                                                { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
-                                                { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
-                                        }
-                                })
-                        end, 3000)
-                end,
-                --keys = {
-                --        { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
-                --        { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
-                --}
         }
 }
-
-require("packer").startup({ packages })
