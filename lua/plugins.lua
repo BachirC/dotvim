@@ -30,11 +30,16 @@ return {
         { "jose-elias-alvarez/typescript.nvim" },
         {
                 "nvim-telescope/telescope.nvim",
-                version = "0.1.5",
+                tag = '0.1.6',
+                branch = '0.1.x',
                 dependencies = {
                         { "nvim-lua/plenary.nvim" },
                         { "nvim-telescope/telescope-live-grep-args.nvim" },
-                        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+                        { "nvim-telescope/telescope-fzf-native.nvim", build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+                        config = function()
+                                require("telescope").load_extension("fzf")
+                        end,
+                        },
                 },
                 config = function()
                         require("cstm.config.telescope")

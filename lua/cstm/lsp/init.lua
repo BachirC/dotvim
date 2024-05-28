@@ -19,8 +19,6 @@ local servers = {
 	--"sourcekit-lsp"
 }
 
-vim.opt.rtp:prepend(lazypath)
-
 for _, server in ipairs(servers) do
 	local module = "cstm.lsp.server." .. server
 	require(module).setup(on_attach, capabilities)
