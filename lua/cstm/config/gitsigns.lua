@@ -2,11 +2,11 @@ local gs = require("gitsigns")
 
 -- Navigate around hunks
 local next = function()
-  gs.next_hunk({ wrap = false })
+	gs.next_hunk({ wrap = false })
 end
 
 local prev = function()
-  gs.prev_hunk({ wrap = false })
+	gs.prev_hunk({ wrap = false })
 end
 
 local on_attach = function(_)
@@ -19,17 +19,15 @@ local on_attach = function(_)
 	vim.keymap.set('n', '<leader>su', gs.undo_stage_hunk, { buffer = true, desc = '[git] undo stage hunk' })
 	vim.keymap.set('n', '<leader>sp', gs.preview_hunk, { buffer = true, desc = '[git] preview hunk' })
 	vim.keymap.set('n', '<leader>sd', gs.reset_hunk, { buffer = true, desc = '[git] reset hunk' })
+	vim.api.nvim_set_hl(0, 'GitSignsAdd', { link = 'GitSignsDiffAdd' })
+	vim.api.nvim_set_hl(0, 'GitSignsChange', { link = 'GitSignsChange' })
+	vim.api.nvim_set_hl(0, 'GitSignsChangedelete', { link = 'GitSignsChange' })
+	vim.api.nvim_set_hl(0, 'GitSignsDelete', { link = 'GitSignsDelete' })
+	vim.api.nvim_set_hl(0, 'GitSignsTopdelete', { link = 'GitSignsDelete' })
 end
 
 gs.setup({
-	signs = {
-		add          = { hl = 'GitSignsDiffAdd', text = '┃' },
-		change       = { hl = 'GitSignsChange', text = '┃' },
-		delete       = { hl = 'GitSignsDelete', text = '┃' },
-		topdelete    = { hl = 'GitSignsDelete', text = '┃' },
-		changedelete = { hl = 'GitSignsChange', text = '┃' },
-	},
 	on_attach = on_attach,
 	current_line_blame = true,
-  current_line_blame_opts = { delay = 500 },
+	current_line_blame_opts = { delay = 500 },
 })

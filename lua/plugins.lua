@@ -121,8 +121,6 @@ return {
                                                 cvs = false,
                                                 ["."] = false,
                                         },
-                                        copilot_node_command = vim.fn.expand("$HOME") ..
-                                                "/.nvm/versions/node/v16.15.0/bin/node",
                                         panel = {
                                           auto_trigger = true,
                                         },
