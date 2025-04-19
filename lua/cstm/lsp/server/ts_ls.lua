@@ -1,5 +1,3 @@
-local nvim_lsp = require("lspconfig")
-
 local setup = function(on_attach)
 	local on_local_attach = function(client, bufnr)
 		-- let null-ls handle it

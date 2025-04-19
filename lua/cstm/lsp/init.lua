@@ -14,7 +14,7 @@ local capabilities = require("cstm.lsp.completion").capabilities
 
 local servers = {
 	"eslint",
-	"tsserver",
+	"ts_ls",
 	"sumneko_lua",
 	--"sourcekit-lsp"
 }
